@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chat Cifrado – César / Vigenère</title>
+  <link rel="stylesheet" href="src/styles/styles.css" />
+</head>
+<body>
+  <!-- Modal de selección de cifrado -->
+  <div id="cipher-modal" class="modal-backdrop show">
+    <div class="modal">
+      <h2>Elige el tipo de cifrado</h2>
+      <p>Podrás cambiarlo luego en la parte superior.</p>
+      <div class="modal-actions">
+        <button id="choose-caesar" class="primary">César</button>
+        <button id="choose-vigenere">Vigenère</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <header class="topbar">
+      <div class="left">
+        <h1>Chat Cifrado</h1>
+        <span id="cipher-badge" class="badge">César</span>
+      </div>
+
+      <div class="controls">
+        <!-- Campo de clave (numérico para César / texto para Vigenère) -->
+        <label for="key-input" id="key-label">Clave (K)</label>
+        <input id="key-input" type="number" class="key-input" value="3" />
+
+        <!-- Alternar vista -->
+        <button id="toggle-view" class="icon-btn" title="Ver cifrado/descifrado">
+          👁️ <span id="view-state">Cifrado</span>
+        </button>
+
+        <!-- Cambiar tipo de cifrado -->
+        <div class="select-wrap">
+          <select id="cipher-select" title="Tipo de cifrado">
+            <option value="caesar">César</option>
+            <option value="vigenere">Vigenère</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <!-- Paneles de chat -->
+    <div class="chat-grid">
+      <!-- Usuario A -->
+      <section class="pane">
+        <div class="pane-head">
+          <div class="dot dot-a"></div>
+          <h3>Usuario A</h3>
+        </div>
+        <ul id="chat-a" class="chat-list"></ul>
+        <div class="composer">
+          <textarea id="input-a" placeholder="Escribe como Usuario A..."></textarea>
+          <button id="send-a" class="primary">Enviar → B</button>
+        </div>
+      </section>
+
+      <!-- Usuario B -->
+      <section class="pane">
+        <div class="pane-head">
+          <div class="dot dot-b"></div>
+          <h3>Usuario B</h3>
+        </div>
+        <ul id="chat-b" class="chat-list"></ul>
+        <div class="composer">
+          <textarea id="input-b" placeholder="Escribe como Usuario B..."></textarea>
+          <button id="send-b" class="primary">Enviar → A</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Opciones extra -->
+    <div class="footer-controls">
+      <label class="toggle">
+        <input id="only-letters" type="checkbox" checked />
+        Solo letras [A–Z]
+      </label>
+      <label class="toggle">
+        <input id="preserve-case" type="checkbox" checked />
+        Conservar mayúsc./minúsc.
+      </label>
+      <span class="hint">
+        * Acentos se normalizan (Á→A, Ñ→N). En Vigenère, la clave solo considera letras (A–Z).
+      </span>
+    </div>
+  </div>
+
+  <script type="module" src="src/ui/chat.js"></script>
+</body>
+</html>
